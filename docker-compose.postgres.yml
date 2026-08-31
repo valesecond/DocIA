@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: doc-intelligence-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: doc_intelligence
+      POSTGRES_USER: doc_intelligence
+      POSTGRES_PASSWORD: doc_intelligence_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - doc_intelligence_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U doc_intelligence -d doc_intelligence"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  doc_intelligence_pgdata:

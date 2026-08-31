@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3000
+@apiKey = dev-key
+
+# DOC Intelligence - Trilha A | Fluxo completo (execute em ordem)
+
+### 1) Health check
+# @name step1Health
+GET {{baseUrl}}/health
+x-api-key: {{apiKey}}
+Accept: application/json
+
+### 2) Upload PNG
+# @name step2Upload
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="workflow-sample.png"
+Content-Type: image/png
+
+< ./fixtures/sample.png
+------DocIntelBoundary--
+
+### 3) Consultar status (id automático do passo 2)
+GET {{baseUrl}}/documents/{{step2Upload.response.body.id}}
+x-api-key: {{apiKey}}
+
+### 4) Reenviar mesmo arquivo (deduplicação)
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="workflow-sample.png"
+Content-Type: image/png
+
+< ./fixtures/sample.png
+------DocIntelBoundary--
+
+### 5) Listar documentos DONE
+GET {{baseUrl}}/documents?status=DONE
+x-api-key: {{apiKey}}
+Accept: application/json

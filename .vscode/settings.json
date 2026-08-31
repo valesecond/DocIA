@@ -1,0 +1,12 @@
+{
+  "git.ignoreLimitWarning": true,
+  "rest-client.environmentVariableFiles": [
+    "${workspaceFolder}/rest-client/http-client.env.json"
+  ],
+  "rest-client.defaultHeaders": {
+    "x-api-key": "dev-key",
+    "Accept": "application/json"
+  },
+  "rest-client.showResponseInDifferentTab": true,
+  "rest-client.previewOption": "full"
+}

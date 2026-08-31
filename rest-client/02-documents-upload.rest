@@ -1,0 +1,57 @@
+@baseUrl = http://localhost:3000
+@apiKey = dev-key
+
+# DOC Intelligence - Trilha A | Upload de documentos
+# API Key: dev-key | Formatos: PDF, PNG, JPEG
+
+### Upload PNG (esperado: 202)
+# @name uploadPng
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="sample.png"
+Content-Type: image/png
+
+< ./fixtures/sample.png
+------DocIntelBoundary--
+
+### Upload JPEG (esperado: 202)
+# @name uploadJpeg
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+Content-Type: image/jpeg
+
+< ./fixtures/sample.jpg
+------DocIntelBoundary--
+
+### Upload PDF (esperado: 202)
+# @name uploadPdf
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+Content-Type: application/pdf
+
+< ./fixtures/sample.pdf
+------DocIntelBoundary--
+
+### Upload duplicado (esperado: 200 + duplicate: true)
+# @name uploadDuplicate
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="sample.png"
+Content-Type: image/png
+
+< ./fixtures/sample.png
+------DocIntelBoundary--

@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:3000
+@apiKey = dev-key
+
+# DOC Intelligence - Trilha A | Casos de erro (com API key válida)
+
+### Upload sem arquivo (esperado: 400)
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary--
+
+### Upload tipo inválido .txt (esperado: 400)
+POST {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=----DocIntelBoundary
+
+------DocIntelBoundary
+Content-Disposition: form-data; name="file"; filename="invalid.txt"
+Content-Type: text/plain
+
+arquivo invalido
+------DocIntelBoundary--
+
+### Consulta com ID inválido
+GET {{baseUrl}}/documents/id-invalido-123
+x-api-key: {{apiKey}}

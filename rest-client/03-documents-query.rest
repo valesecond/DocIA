@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3000
+@apiKey = dev-key
+@documentId = {{documentId}}
+
+# DOC Intelligence - Trilha A | Consulta de documentos
+# API Key: dev-key
+
+### Consultar documento por ID
+GET {{baseUrl}}/documents/{{documentId}}
+x-api-key: {{apiKey}}
+
+### Consultar documento inexistente
+GET {{baseUrl}}/documents/00000000-0000-0000-0000-000000000000
+x-api-key: {{apiKey}}
+
+### Listar todos os documentos
+GET {{baseUrl}}/documents
+x-api-key: {{apiKey}}
+Accept: application/json
+
+### Listar documentos DONE
+GET {{baseUrl}}/documents?status=DONE
+x-api-key: {{apiKey}}
+Accept: application/json
+
+### Listar documentos RECEIVED
+GET {{baseUrl}}/documents?status=RECEIVED
+x-api-key: {{apiKey}}
+Accept: application/json
+
+### Listar documentos PROCESSING
+GET {{baseUrl}}/documents?status=PROCESSING
+x-api-key: {{apiKey}}
+Accept: application/json
+
+### Listar documentos PENDING_REVIEW
+GET {{baseUrl}}/documents?status=PENDING_REVIEW
+x-api-key: {{apiKey}}
+Accept: application/json
+
+### Listar documentos FAILED
+GET {{baseUrl}}/documents?status=FAILED
+x-api-key: {{apiKey}}
+Accept: application/json

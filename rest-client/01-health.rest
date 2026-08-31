@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:3000
+@apiKey = dev-key
+
+# Health check (retorna JSON)
+
+### Health check
+GET {{baseUrl}}/health
+x-api-key: {{apiKey}}
+Accept: application/json
